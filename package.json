@@ -1,0 +1,6 @@
+{
+  "name": "mapbox-studio-mars-terrain",
+  "version": "1.0.0",
+  "description": "Mars Terrain",
+  "main": "./package.json"
+}

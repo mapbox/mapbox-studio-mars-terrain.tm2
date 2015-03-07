@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-color="#704c33">
+
+<Parameters>
+  <Parameter name="attribution"><![CDATA[<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox</a>]]></Parameter>
+  <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
+  <Parameter name="center">-96.416,-0.0439,4</Parameter>
+  <Parameter name="description"><![CDATA[Mars Terrain]]></Parameter>
+  <Parameter name="format">png8:m=h</Parameter>
+  <Parameter name="maxzoom">10</Parameter>
+  <Parameter name="minzoom">0</Parameter>
+  <Parameter name="name"><![CDATA[Mars Terrain]]></Parameter>
+  <Parameter name="source"><![CDATA[mapbox:///mapbox.mars-satellite,mapbox.mars-terrain-v1]]></Parameter>
+</Parameters>
+
+
+<Style name="mapbox_mars_satellite" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <RasterSymbolizer default-color="#dddddd" opacity="0.06" scaling="lanczos" comp-op="src" >
+	<stop value="0" color="#dddddd" /></RasterSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <MinScaleDenominator>3000000</MinScaleDenominator>
+    <RasterSymbolizer opacity="0.06" scaling="lanczos" comp-op="src" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <RasterSymbolizer opacity="0.09" scaling="lanczos" comp-op="src" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <RasterSymbolizer opacity="0.12" scaling="lanczos" comp-op="src" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000000</MinScaleDenominator>
+    <RasterSymbolizer scaling="lanczos" comp-op="src" opacity="0.15" />
+  </Rule>
+</Style>
+<Layer name="mapbox_mars_satellite"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>mapbox_mars_satellite</StyleName>  </Layer>
+
+<Style name="contour-line" filter-mode="first">
+  <Rule>
+    <Filter>([index] &gt;= 5) and ([ele] != 0)</Filter>
+    <LineSymbolizer stroke-opacity="0.24" stroke="#000000" stroke-width="1.2" />
+  </Rule>
+  <Rule>
+    <LineSymbolizer stroke="#000000" stroke-opacity="0.14" stroke-width="1.2" />
+  </Rule>
+</Style>
+<Layer name="contour"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>contour-line</StyleName>  </Layer>
+
+<Style name="hillshade-10" filter-mode="first" image-filters="agg-stack-blur(1,1)" image-filters-inflate="true" comp-op="hard-light">
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 'highlight')</Filter>
+    <PolygonSymbolizer fill-opacity="0.08" fill="#ffffee" clip="false" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([class] = 'shadow')</Filter>
+    <PolygonSymbolizer fill="#001122" comp-op="multiply" fill-opacity="0.1" clip="false" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <PolygonSymbolizer clip="false" />
+  </Rule>
+</Style>
+<Style name="hillshade-9" filter-mode="first" image-filters-inflate="true" comp-op="hard-light">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([class] = 'highlight')</Filter>
+    <PolygonSymbolizer fill-opacity="0.1" fill="#ffffee" clip="false" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>3000000</MinScaleDenominator>
+    <Filter>([class] = 'highlight')</Filter>
+    <PolygonSymbolizer fill="#ffffee" fill-opacity="0.15" clip="false" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([class] = 'shadow')</Filter>
+    <PolygonSymbolizer fill="#001122" comp-op="multiply" fill-opacity="0.1" clip="false" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <PolygonSymbolizer clip="false" />
+  </Rule>
+</Style>
+<Layer name="hillshade"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>hillshade-9</StyleName>
+    <StyleName>hillshade-10</StyleName>  </Layer>
+
+<Style name="place-features" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([size] &lt; 2000) and ([type] = 'crater') and ([name] = 'Phlegra Dorsa')</Filter>
+    <TextSymbolizer size="12" character-spacing="0" halo-radius="1" face-name="Super Grotesk Offc Pro Regular" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' Crater']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <MinScaleDenominator>50000000</MinScaleDenominator>
+    <Filter>([size] &lt; 2000) and ([type] = 'crater') and ([name] = 'Phlegra Dorsa')</Filter>
+    <TextSymbolizer dx="-1" face-name="Super Grotesk Offc Pro Regular" size="13" character-spacing="1" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([size] &lt; 2000) and ([type] = 'crater') and ([name] = 'Phlegra Dorsa')</Filter>
+    <TextSymbolizer face-name="Super Grotesk Offc Pro Regular" size="13" character-spacing="1" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([name] != 'Olympus Rupes') and ([size] &lt; 2000) and ([type] = 'crater')</Filter>
+    <TextSymbolizer size="12" character-spacing="0" halo-radius="1" face-name="Super Grotesk Offc Pro Regular" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' Crater']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([name] != 'Olympus Rupes') and ([size] &lt; 2000) and ([type] = 'crater')</Filter>
+    <TextSymbolizer face-name="Super Grotesk Offc Pro Regular" size="13" character-spacing="1" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <MinScaleDenominator>50000000</MinScaleDenominator>
+    <Filter>([type] != 'landing') and ([type] != 'landing_failed') and ([name] = 'Phlegra Dorsa') and ([size] &lt; 2000)</Filter>
+    <TextSymbolizer dx="-1" face-name="Super Grotesk Offc Pro Regular" size="13" character-spacing="1" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([type] != 'landing') and ([type] != 'landing_failed') and ([name] = 'Phlegra Dorsa') and ([size] &lt; 2000)</Filter>
+    <TextSymbolizer size="15" face-name="Super Grotesk Offc Pro Regular" character-spacing="1" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([type] != 'landing') and ([type] != 'landing_failed') and ([name] = 'Phlegra Dorsa') and ([size] &lt; 2000)</Filter>
+    <TextSymbolizer face-name="Super Grotesk Offc Pro Regular" size="13" character-spacing="1" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <MinScaleDenominator>50000000</MinScaleDenominator>
+    <Filter>([type] != 'landing') and ([type] != 'landing_failed') and ([name] = 'Phlegra Dorsa') and ([size] &gt;= 2000)</Filter>
+    <TextSymbolizer dx="-1" character-spacing="2" face-name="Super Grotesk Offc Pro Medium" placement="point" size="16" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([type] != 'landing') and ([type] != 'landing_failed') and ([name] = 'Phlegra Dorsa') and ([size] &gt;= 2000)</Filter>
+    <TextSymbolizer size="18" character-spacing="2" face-name="Super Grotesk Offc Pro Medium" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([type] != 'landing') and ([type] != 'landing_failed') and ([name] = 'Phlegra Dorsa') and ([size] &gt;= 2000)</Filter>
+    <TextSymbolizer character-spacing="2" face-name="Super Grotesk Offc Pro Medium" placement="point" size="16" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <MinScaleDenominator>50000000</MinScaleDenominator>
+    <Filter>([type] != 'landing') and ([type] != 'landing_failed') and ([name] = 'Phlegra Dorsa')</Filter>
+    <TextSymbolizer dx="-1" face-name="Super Grotesk Offc Pro Medium" placement="point" size="16" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([type] != 'landing') and ([type] != 'landing_failed') and ([name] = 'Phlegra Dorsa')</Filter>
+    <TextSymbolizer size="18" face-name="Super Grotesk Offc Pro Medium" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([type] != 'landing') and ([type] != 'landing_failed') and ([name] = 'Phlegra Dorsa')</Filter>
+    <TextSymbolizer face-name="Super Grotesk Offc Pro Medium" placement="point" size="16" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([name] != 'Olympus Rupes') and ([type] != 'landing') and ([type] != 'landing_failed') and ([size] &lt; 2000)</Filter>
+    <TextSymbolizer size="15" face-name="Super Grotesk Offc Pro Regular" character-spacing="1" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([name] != 'Olympus Rupes') and ([type] != 'landing') and ([type] != 'landing_failed') and ([size] &lt; 2000)</Filter>
+    <TextSymbolizer face-name="Super Grotesk Offc Pro Regular" size="13" character-spacing="1" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([name] != 'Olympus Rupes') and ([type] != 'landing') and ([type] != 'landing_failed') and ([size] &gt;= 2000)</Filter>
+    <TextSymbolizer size="18" character-spacing="2" face-name="Super Grotesk Offc Pro Medium" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([name] != 'Olympus Rupes') and ([type] != 'landing') and ([type] != 'landing_failed') and ([size] &gt;= 2000)</Filter>
+    <TextSymbolizer character-spacing="2" face-name="Super Grotesk Offc Pro Medium" placement="point" size="16" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([name] != 'Olympus Rupes') and ([type] != 'landing') and ([type] != 'landing_failed')</Filter>
+    <TextSymbolizer size="18" face-name="Super Grotesk Offc Pro Medium" placement="point" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([name] != 'Olympus Rupes') and ([type] != 'landing') and ([type] != 'landing_failed')</Filter>
+    <TextSymbolizer face-name="Super Grotesk Offc Pro Medium" placement="point" size="16" fill="#cccccc" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Style name="place-landing" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>200000000</MaxScaleDenominator>
+    <MinScaleDenominator>100000000</MinScaleDenominator>
+    <Filter>([type] = 'landing') and ([name] = 'Curiosity')</Filter>
+    <TextSymbolizer dy="-16" face-name="Open Sans Regular" placement="point" text-transform="uppercase" size="14" fill="#eeeeee" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([type] = 'landing') and ([name] = 'Curiosity')</Filter>
+    <TextSymbolizer size="15" face-name="Open Sans Regular" placement="point" text-transform="uppercase" fill="#eeeeee" dy="16" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([type] = 'landing') and ([name] = 'Curiosity')</Filter>
+    <TextSymbolizer face-name="Open Sans Regular" placement="point" text-transform="uppercase" size="14" fill="#eeeeee" dy="16" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000000</MaxScaleDenominator>
+    <MinScaleDenominator>50000000</MinScaleDenominator>
+    <Filter>([type] = 'landing') and ([name] = 'MER Spirit')</Filter>
+    <TextSymbolizer dx="-16" dy="0" face-name="Open Sans Regular" placement="point" text-transform="uppercase" size="14" fill="#eeeeee" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([type] = 'landing') and ([name] = 'MER Spirit')</Filter>
+    <TextSymbolizer size="15" face-name="Open Sans Regular" placement="point" text-transform="uppercase" fill="#eeeeee" dy="16" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([type] = 'landing') and ([name] = 'MER Spirit')</Filter>
+    <TextSymbolizer face-name="Open Sans Regular" placement="point" text-transform="uppercase" size="14" fill="#eeeeee" dy="16" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000000</MaxScaleDenominator>
+    <MinScaleDenominator>50000000</MinScaleDenominator>
+    <Filter>([type] = 'landing') and ([name] = 'Viking 1')</Filter>
+    <TextSymbolizer dy="-16" face-name="Open Sans Regular" placement="point" text-transform="uppercase" size="14" fill="#eeeeee" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([type] = 'landing') and ([name] = 'Viking 1')</Filter>
+    <TextSymbolizer size="15" face-name="Open Sans Regular" placement="point" text-transform="uppercase" fill="#eeeeee" dy="16" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([type] = 'landing') and ([name] = 'Viking 1')</Filter>
+    <TextSymbolizer face-name="Open Sans Regular" placement="point" text-transform="uppercase" size="14" fill="#eeeeee" dy="16" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <Filter>([type] = 'landing')</Filter>
+    <TextSymbolizer size="15" face-name="Open Sans Regular" placement="point" text-transform="uppercase" fill="#eeeeee" dy="16" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([type] = 'landing')</Filter>
+    <TextSymbolizer face-name="Open Sans Regular" placement="point" text-transform="uppercase" size="14" fill="#eeeeee" dy="16" halo-fill="#3b281b" halo-opacity="0.7" halo-radius="1.5" halo-rasterizer="fast" wrap-width="70" ><![CDATA[[name]+' landing site']]></TextSymbolizer>
+  </Rule>
+</Style>
+<Style name="place-landing/icon" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>200000000</MaxScaleDenominator>
+    <Filter>([type] = 'landing')</Filter>
+    <MarkersSymbolizer file="img/maki/rocket-24.svg" opacity="0.8" />
+  </Rule>
+</Style>
+<Layer name="place"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>place-landing/icon</StyleName>
+    <StyleName>place-landing</StyleName>
+    <StyleName>place-features</StyleName>  </Layer>
+
+<Style name="contour-label" filter-mode="first">
+  <Rule>
+    <Filter>([index] &gt;= 5)</Filter>
+    <TextSymbolizer face-name="Open Sans Regular" placement="line" size="10" fill="#222222" avoid-edges="true" halo-fill="rgba(112, 76, 51, 0.09999999999999998)" halo-radius="2" halo-rasterizer="fast" ><![CDATA[[ele]+' m']]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="contour"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>contour-label</StyleName>  </Layer>
+
+</Map>
