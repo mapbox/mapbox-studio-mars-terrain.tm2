@@ -18,8 +18,8 @@
 <Style name="mapbox_mars_satellite" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>3000000</MaxScaleDenominator>
-    <RasterSymbolizer default-color="#dddddd" opacity="0.06" scaling="lanczos" comp-op="src" >
-	<stop value="0" color="#dddddd" /></RasterSymbolizer>
+    <RasterSymbolizer default-color="#888888" opacity="0.06" scaling="lanczos" comp-op="src" >
+	<stop value="0" color="#888888" /></RasterSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>6500000</MaxScaleDenominator>

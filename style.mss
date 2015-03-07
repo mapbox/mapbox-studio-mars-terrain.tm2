@@ -13,8 +13,8 @@ Map {
   [zoom>=6] { raster-opacity: 0.09; }
   [zoom>=7] { raster-opacity: 0.06; }
   [zoom>=8] {
-    raster-colorizer-default-color: #ddd;
-    raster-colorizer-stops: stop(0,#ddd);
+    raster-colorizer-default-color: #888;
+    raster-colorizer-stops: stop(0,#888);
   }
 }
 
